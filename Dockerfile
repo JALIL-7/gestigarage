@@ -40,7 +40,7 @@ COPY . .
 # Installer les dépendances PHP
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV COMPOSER_MEMORY_LIMIT=-1
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Installer les dépendances JS et construire les assets Vite
 RUN npm install
