@@ -34,6 +34,8 @@ WORKDIR /var/www/html
 COPY . .
 
 # Installer les dépendances PHP
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_MEMORY_LIMIT=-1
 RUN composer install --no-dev --optimize-autoloader
 
 # Installer les dépendances JS et construire les assets Vite
