@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.4-apache
 
 # Installation des dépendances système
 RUN apt-get update && apt-get install -y \
@@ -40,7 +40,7 @@ COPY . .
 # Installer les dépendances PHP
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV COMPOSER_MEMORY_LIMIT=-1
-RUN composer install --no-dev --optimize-autoloader --no-scripts
+RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platform-reqs
 
 # Installer les dépendances JS et construire les assets Vite
 RUN npm install
