@@ -6,6 +6,9 @@ sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2
 # Révéler les packages Laravel (ignoré lors de l'installation Docker)
 php artisan package:discover --ansi
 
+# Lancer les migrations en production (crée sessions, cache, jobs, etc.)
+php artisan migrate --force
+
 # Nettoyer et mettre en cache la configuration pour la production
 php artisan config:cache
 php artisan route:cache
