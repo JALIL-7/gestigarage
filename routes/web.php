@@ -83,19 +83,3 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('messages/{id}/repondre', [MessageController::class, 'repondre'])->name('messages.repondre');
     });
 });
-
-// Route temporaire de secours pour réinitialiser le mot de passe admin
-Route::get('/reset-admin-emergency', function () {
-    $user = \App\Models\User::where('email', 'admin@gestigarage.com')->first();
-    if (!$user) {
-        $user = \App\Models\User::create([
-            'name' => 'Admin GestiGarage',
-            'email' => 'admin@gestigarage.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('password123'),
-        ]);
-        return "Compte admin créé avec succès : admin@gestigarage.com / password123";
-    }
-    $user->password = \Illuminate\Support\Facades\Hash::make('password123');
-    $user->save();
-    return "Mot de passe réinitialisé pour admin@gestigarage.com : password123";
-});
